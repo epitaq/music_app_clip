@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+        <link rel="stylesheet" href="popup.css">
+    </head>
+    <body>
+        <!-- 名前入力欄 -->
+        <label for="singer">名前</label>
+        <input type="text" id="singer">
+        <!-- 保存されたデータの表 -->
+        <table id="movieData" class="table">
+            <tbody>
+                <tr>
+                    <th>name</th><th>title</th><th>start</th><th>end</th>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 入力表 -->
+        <table id="inputData" class="table">
+            <tbody>
+                <tr>
+                    <td class="name"><input type="text" class="inputData" id="inputName" placeholder="name"></td>
+                    <td class="title"><input type="text" class="inputData" id="inputTitle" placeholder="title"></td>
+                    <td class="start"><input type="text" class="inputData" id="inputStart" placeholder="start"></td>
+                    <td class="end"><input type="text" class="inputData" id="inputEnd" placeholder="end"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="addSaveCheck">
+            <div class="addSaveCheckButton" style="margin-left: auto;"><img src="images/playlist_add_black_24dp.svg" class="buttonImg"> 追加</div>
+            <div class="addSaveCheckButton"><img src="images/save_alt_black_24dp.svg" class="buttonImg">保存</div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>

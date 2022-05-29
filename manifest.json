@@ -1,0 +1,23 @@
+{
+    "name": "clip",
+    "description": "https://epita.herokuapp.com/musicapp のデータ作成用の拡張機能、YouTubeを見ながら作成できるようになる",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "action" : {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "js": ["background.js"]
+    },
+    "content_scripts":[
+        {
+            "js":["content_script.js"],
+            "matches":[ "http://www.youtube.com/*", "https://www.youtube.com/*" ]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "storage"
+    ]
+}
+
