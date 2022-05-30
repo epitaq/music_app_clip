@@ -10,13 +10,15 @@
         <label for="singer">名前</label>
         <input type="text" id="singer">
         <!-- 保存されたデータの表 -->
-        <table id="movieData" class="table">
-            <tbody>
-                <tr>
-                    <th>name</th><th>title</th><th>start</th><th>end</th>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tableRange">
+            <table id="movieData" class="table">
+                <tbody>
+                    <tr>
+                        <th>name</th><th>title</th><th>start</th><th>end</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!-- 入力表 -->
         <table id="inputData" class="table">
             <tbody>
@@ -29,8 +31,8 @@
             </tbody>
         </table>
         <div class="addSaveCheck">
-            <div class="addSaveCheckButton" style="margin-left: auto;"><img src="images/playlist_add_black_24dp.svg" class="buttonImg"> 追加</div>
-            <div class="addSaveCheckButton"><img src="images/save_alt_black_24dp.svg" class="buttonImg">保存</div>
+            <div class="addSaveCheckButton" style="margin-left: auto;" id="getData"><img src="images/playlist_add_black_24dp.svg" class="buttonImg"> 追加</div>
+            <div class="addSaveCheckButton" id="dataExport"><img src="images/save_alt_black_24dp.svg" class="buttonImg">保存</div>
         </div>
         <script src="popup.js"></script>
     </body>

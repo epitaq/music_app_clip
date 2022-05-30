@@ -54,8 +54,13 @@ function addZero (num) {
 }
 
 
-// 並び替える必要がある
+// 並び替え
+function musicDataSort (data) {
+    sortData = {"movie": data.movie, "name": data.name, "title": data.title, "start": data.start, "end": data.end}
+    return sortData
+}
 
+// id: 311, movie: '0DzqJQggP9s', name: '尾丸ポルカ', title: 'トンデモワンダーズ', start: 0, …}
 // musicDataを元にhtmlを作成
 function createTable(){
     const movieTable = document.querySelector("#movieData > tbody")
@@ -64,6 +69,8 @@ function createTable(){
     musicData.forEach((music) => {
         const tr = document.createElement('tr')
         movieTable.appendChild(tr)
+        // 並び替え
+        music = musicDataSort(music)
         // 中の内容
         const obArray = Object.entries(music)
         obArray.forEach((arr) =>{
@@ -154,5 +161,5 @@ function dataExport() {
 }
 
 // ボタンにｊｓを紐付け
-document.querySelector("body > div > div:nth-child(1)").addEventListener('click', getData)
-document.querySelector("body > div > div:nth-child(2)").addEventListener('click', dataExport)
+document.getElementById('getData').addEventListener('click', getData)
+document.getElementById('dataExport').addEventListener('click', dataExport)

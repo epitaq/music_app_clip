@@ -24,7 +24,7 @@ body {
     /* display: flex; */
     margin: 10px;
     width: 500px;
-    height: 200px;
+    /* height: 200px; */
 }
 ul {
     list-style: none;
@@ -35,6 +35,12 @@ a {
 }
 th,td{
     border:solid 1px #aaaaaa;
+}
+th{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #f2f2f2;
 }
 
 
@@ -47,8 +53,16 @@ th,td{
 .table{
     width: 100%;
 }
-#movieData{
-    margin-top: 1rem;
+/* #movieData{
+
+} */
+.tableRange{
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+.tableRange::-webkit-scrollbar{
+    display: none;
 }
 .inputData{
     width: 100%;
