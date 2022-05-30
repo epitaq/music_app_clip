@@ -1,18 +1,29 @@
-
+// メインのデータ chrome内のデータを参照
+let musicData = []
+contentScript () // データを更新
+// content_script から情報をもらう
 let msg = {}
-function message () {
+// htmlから動画IDと歌った人を取得
+let singer = ''
+// 動画ID
+let videoId = ''
+// 取得した時間をここに入れる
+let time = 0
+
+function contentScript () {
     chrome.tabs.query({ active: true, currentWindow: true}, aim_message)
     function aim_message(tabs){
         chrome.tabs.sendMessage(tabs[0].id , 'popup', function (response){
             console.log(response)
-            videoId = response.id
-            updateData()
+            videoId = response.id // videoIdを取得
+            updateData() // musicDataを更新
+            time = response.time // カレントタイム
         })
     }
 }
 
+// chrome内のデータを参照
 function updateData(){
-    // メインのデータ chrome内のデータを参照
     chrome.storage.local.get(function(items) {
         musicData = items.musicData
         if (musicData.length != 0){
@@ -26,16 +37,6 @@ function updateData(){
         }
     })
 }
-
-
-// メインのデータ chrome内のデータを参照
-let musicData = []
-message() // データを更新
-
-// htmlから動画IDと歌った人を取得
-// contentに飛ばす
-let videoId = ''
-let singer = ''
 
 // 入力欄のnameを自動入力
 document.getElementById('singer').addEventListener('change', singerChange)
@@ -114,7 +115,7 @@ function changeInput(){
 
 // 記入欄の取得 ボタン
 function getData () {
-    message() // idの取得
+    contentScript () // idの取得
     // データの取得
     let movieData = videoId
     let nameData = document.getElementById('inputName').value
@@ -158,6 +159,16 @@ function dataExport() {
     link.download = videoId + '.json' // 出力するファイルの名前
     link.click()
     link.remove()
+}
+
+// 時間を保存
+function saveStart (){
+    contentScript() // データを更新
+    document.getElementById('inputStart').value = time
+}
+function saveEnd (){
+    contentScript() // データを更新
+    document.getElementById('inputEnd').value = time
 }
 
 // ボタンにｊｓを紐付け
