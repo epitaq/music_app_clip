@@ -6,39 +6,31 @@ function message () {
         chrome.tabs.sendMessage(tabs[0].id , 'popup', function (response){
             console.log(response)
             videoId = response.id
+            updateData()
         })
     }
 }
 
+function updateData(){
+    // メインのデータ chrome内のデータを参照
+    chrome.storage.local.get(function(items) {
+        musicData = items.musicData
+        if (musicData.length != 0){
+            if (musicData[0]['movie'] == videoId){
+                createTable()
+            } else {
+                musicData = []
+            }
+        } else {
+            musicData = []
+        }
+    })
+}
+
 
 // メインのデータ chrome内のデータを参照
-var musicData = []
+let musicData = []
 message() // データを更新
-
-// データの保存がうまくいかない　保存できても復元できない？　他の動画に行った時の引き継がれてしまう　2回目いこう次の関数が実行されない？
-
-
-// try {
-//     chrome.storage.local.get(function(items) { musicData = items.musicData })
-//     if (musicData[0].movie == videoId){
-//         console.log('chromeから取得')
-//         createTable()
-//     } else {
-//         console.log('chrome内にありませんでした')
-//         musicData = []
-//     }
-// } catch (error) {
-//     console.log('chrome内にありませんでした')
-// }
-chrome.storage.local.get(function(items) {
-    musicData = items.musicData
-    if (musicData[0]['movie'] == videoId){
-        createTable()
-    } else {
-        musicData = []
-    }
-})
-
 
 // htmlから動画IDと歌った人を取得
 // contentに飛ばす
@@ -60,6 +52,9 @@ function addZero (num) {
         return num+''
     }
 }
+
+
+// 並び替える必要がある
 
 // musicDataを元にhtmlを作成
 function createTable(){
