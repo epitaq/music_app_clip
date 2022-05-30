@@ -163,14 +163,24 @@ function dataExport() {
 
 // 時間を保存
 function saveStart (){
+    let oldTime = time
     contentScript() // データを更新
-    document.getElementById('inputStart').value = time
+    // 処理待ちをする timeが更新されない
+    setTimeout(() => {
+        document.getElementById('inputStart').value = time
+    }, 100);
 }
 function saveEnd (){
+    let oldTime = time
     contentScript() // データを更新
-    document.getElementById('inputEnd').value = time
+        // 処理待ちをする timeが更新されない
+        setTimeout(() => {
+            document.getElementById('inputEnd').value = time
+        }, 100);
 }
 
 // ボタンにｊｓを紐付け
+document.getElementById('saveStart').addEventListener('click', saveStart)
+document.getElementById('saveEnd').addEventListener('click', saveEnd)
 document.getElementById('getData').addEventListener('click', getData)
 document.getElementById('dataExport').addEventListener('click', dataExport)
